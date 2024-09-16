@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const DLDeliveryFormSchema = mongoose.Schema(
     {
@@ -72,8 +72,8 @@ const DLDeliveryFormSchema = mongoose.Schema(
     {
         timestamps: true, // Automatically adds createdAt and updatedAt fields
     }
-);
+)
 
-const DLDeliveryForm = mongoose.model('DLDeliveryForm', DLDeliveryFormSchema);
+const DLDeliveryForm = mongoose.model('DLDeliveryForm', DLDeliveryFormSchema)
 
-export default DLDeliveryForm;
+export default DLDeliveryForm
