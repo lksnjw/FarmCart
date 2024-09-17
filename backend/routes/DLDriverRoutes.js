@@ -1,9 +1,10 @@
-import express from 'express';
+import express from 'express'
 import {
     addDriver,
     getDriverById,
     updateDriverById,
     deleteDriverById,
+
     loginDriver,
     getDriverProfile,
     updateAvailability,
@@ -18,14 +19,16 @@ const router = express.Router();
 router.post('/login', loginDriver);
 
 router.post('/addDriver/:id', addDriver);
+
 // Route to get a driver by ID
-router.get('/get/:id', getDriverById);
+router.get('/get/:id', getDriverById)
 
 // Route to update a driver by ID
-router.put('/update/:id', updateDriverById);
+router.put('/update/:id', updateDriverById)
 
 // Route to delete a driver by ID
-router.delete('/delete/:id', deleteDriverById);
+router.delete('/delete/:id', deleteDriverById)
+
 
 router.get('/profile', protectDriver, getDriverProfile);
 
