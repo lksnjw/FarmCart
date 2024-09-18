@@ -1,35 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import axios from '../../../axios'; // Corrected path
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import axios from '../../../axios' // Corrected path
+import { useParams, useNavigate } from 'react-router-dom'
 
 const DLSendEmail = () => {
-    const { id } = useParams(); // Get the driver ID from the URL
-    const [driverDetails, setDriverDetails] = useState(null);
-    const [emailBody, setEmailBody] = useState(''); // State for the email body
-    const [emailSubject, setEmailSubject] = useState('Congratulations on Becoming a Driver!');
-    const navigate = useNavigate();
+    const { id } = useParams() // Get the driver ID from the URL
+    const [driverDetails, setDriverDetails] = useState(null)
+    const [emailBody, setEmailBody] = useState('') // State for the email body
+    const [emailSubject, setEmailSubject] = useState(
+        'Congratulations on Becoming a Driver!'
+    )
+    const navigate = useNavigate()
 
     useEffect(() => {
         const fetchDriverDetails = async () => {
             try {
-                const { data } = await axios.get(`/drivers/${id}`);
-                setDriverDetails(data);
+                const { data } = await axios.get(`/drivers/${id}`)
+                setDriverDetails(data)
                 // Set a default email body
                 setEmailBody(
                     `Dear ${data.fullName},\n\n` +
-                    `Congratulations! Your driver application has been approved. You can now log in to your account using the following credentials:\n\n` +
-                    `Username: ${data.email}\n` +
-                    `Password: Your ID Card Number\n\n` +
-                    `Best regards,\n` +
-                    `FarmCart Team`
-                );
+                        `Congratulations! Your driver application has been approved. You can now log in to your account using the following credentials:\n\n` +
+                        `Username: ${data.email}\n` +
+                        `Password: Your ID Card Number\n\n` +
+                        `Best regards,\n` +
+                        `FarmCart Team`
+                )
             } catch (error) {
-                console.error('Error fetching driver details:', error);
+                console.error('Error fetching driver details:', error)
             }
-        };
+        }
 
-        fetchDriverDetails();
-    }, [id]);
+        fetchDriverDetails()
+    }, [id])
 
     const handleSendEmail = async () => {
         try {
@@ -37,16 +39,16 @@ const DLSendEmail = () => {
                 to: driverDetails.email,
                 subject: emailSubject,
                 body: emailBody,
-            });
-            alert('Email sent successfully!');
-            navigate('/manager/approve-driver');
+            })
+            alert('Email sent successfully!')
+            navigate('/manager/approve-driver')
         } catch (error) {
-            console.error('Error sending email:', error);
-            alert('Failed to send the email.');
+            console.error('Error sending email:', error)
+            alert('Failed to send the email.')
         }
-    };
+    }
 
-    if (!driverDetails) return <div>Loading...</div>;
+    if (!driverDetails) return <div>Loading...</div>
 
     return (
         <div className="max-w-xl mx-auto p-6 bg-gray-100 shadow-md rounded-md">
@@ -74,7 +76,7 @@ const DLSendEmail = () => {
                 </button>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default DLSendEmail;
+export default DLSendEmail

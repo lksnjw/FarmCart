@@ -32,6 +32,7 @@ import ShopProfile from './Pages/farmer/shopProfile'
 import Products from './Pages/farmer/products'
 import AddProduct from './Pages/farmer/addProduct'
 import UpdateProduct from './Pages/farmer/UpdateProduct'
+
 import DLDriverRegistrationForm from './Pages/delivery/DLDriverRegistrationForm';
 import DLApproveDriver from './Pages/delivery/DLApproveDriver'; // Ensure the path is correct
 import DLDriverAccept from './Pages/delivery/DLDriverAccept';
@@ -47,10 +48,10 @@ import DLDeleteConfirm from './Pages/delivery/DLdeleteconfirm';
 
 
 
-
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<MainLayout />}>
+
              <Route index element={<HomePage />} />
              <Route path="/register-driver" element={<DLDriverRegistrationForm />} />
                 <Route path="/upload-image" element={<DLImageUpload />} />
@@ -63,6 +64,7 @@ const router = createBrowserRouter(
              <Route path="/driver/profile" element={<DLDriverProfile />} /> {/* Add profile route */}
              <Route path="/driver/profile/edit" element={<DLEditProfile />} />
              <Route path="/driver/delete-confirmation" element={<DLDeleteConfirm />} />
+
 
 
 
