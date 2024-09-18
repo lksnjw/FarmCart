@@ -33,62 +33,38 @@ import Products from './Pages/farmer/products'
 import AddProduct from './Pages/farmer/addProduct'
 import UpdateProduct from './Pages/farmer/UpdateProduct'
 
-import DLDriverRegistrationForm from './Pages/delivery/DLDriverRegistrationForm';
-import DLApproveDriver from './Pages/delivery/DLApproveDriver'; // Ensure the path is correct
-import DLDriverAccept from './Pages/delivery/DLDriverAccept';
-import DLImageUpload from './DLImageUpload';
-import DLSendEmail from './Pages/delivery/DLSendEmail'; // Import the DLSendEmail component
+import DLDriverRegistrationForm from './Pages/delivery/DLDriverRegistrationForm'
+import DLApproveDriver from './Pages/delivery/DLApproveDriver' // Ensure the path is correct
+import DLDriverAccept from './Pages/delivery/DLDriverAccept'
+import DLImageUpload from './DLImageUpload'
+import DLSendEmail from './Pages/delivery/DLSendEmail' // Import the DLSendEmail component
 import DLLogin from './Pages/delivery/DLLogin' // Added DLLogin import
-import DeliveryDashboard from './Pages/delivery/DLDriverDashboard';
-
-
-
-
+import DeliveryDashboard from './Pages/delivery/DLDriverDashboard'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<MainLayout />}>
-
-             <Route index element={<HomePage />} />
-             <Route path="/register-driver" element={<DLDriverRegistrationForm />} />
-                <Route path="/upload-image" element={<DLImageUpload />} />
-             <Route path="/manager/approve-driver" element={<DLApproveDriver />} />
-             <Route path="/manager/approve-driver/:id" element={<DLDriverAccept />} />
-             <Route path="/manager/approve-driver/:id/send-email" element={<DLSendEmail />} />
-             <Route path="/driver/login" element={<DLLogin />} />  {/* Driver Login Route */}
-             <Route path="/driver/dashboard" element={<DeliveryDashboard />} />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <Route index element={<HomePage />} />
+            <Route
+                path="/register-driver"
+                element={<DLDriverRegistrationForm />}
+            />
+            <Route path="/upload-image" element={<DLImageUpload />} />
+            <Route
+                path="/manager/approve-driver"
+                element={<DLApproveDriver />}
+            />
+            <Route
+                path="/manager/approve-driver/:id"
+                element={<DLDriverAccept />}
+            />
+            <Route
+                path="/manager/approve-driver/:id/send-email"
+                element={<DLSendEmail />}
+            />
+            <Route path="/driver/login" element={<DLLogin />} />{' '}
+            {/* Driver Login Route */}
+            <Route path="/driver/dashboard" element={<DeliveryDashboard />} />
             {/*<Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-pass" element={<ResetPassword />} />
