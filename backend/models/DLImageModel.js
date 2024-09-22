@@ -1,5 +1,5 @@
 // models/DLImageModel.js
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const imageSchema = new mongoose.Schema({
     path: {
@@ -14,8 +14,8 @@ const imageSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-});
+})
 
-const DLImage = mongoose.model('DLImage', imageSchema);
+const DLImage = mongoose.model('DLImage', imageSchema)
 
-export default DLImage;
+export default DLImage

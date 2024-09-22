@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'
 import {
     submitDLDeliveryForm,
     getPendingForms,
@@ -6,10 +6,10 @@ import {
     updateDeliveryFormStatus,
     updateDeliveryForm,
     deleteDeliveryForm,
-} from '../controllers/DLDriverFormController.js';
-import upload from '../utils/DLMulter.js';
+} from '../controllers/DLDriverFormController.js'
+import upload from '../utils/DLMulter.js'
 
-const router = express.Router();
+const router = express.Router()
 
 // Route to submit the delivery form with images
 router.post(
@@ -20,21 +20,21 @@ router.post(
         { name: 'personalImage', maxCount: 1 },
     ]),
     submitDLDeliveryForm
-);
+)
 
 // Route to get all pending forms
-router.get('/pending-forms', getPendingForms);
+router.get('/pending-forms', getPendingForms)
 
 // Route to get a specific delivery form by ID
-router.get('/:id', getDeliveryFormById);
+router.get('/:id', getDeliveryFormById)
 
 // Route to update the status of a delivery form (approve or reject)
-router.put('/:id/status', updateDeliveryFormStatus);
+router.put('/:id/status', updateDeliveryFormStatus)
 
 // Route to update a delivery form by ID
-router.put('/edit/:id', updateDeliveryForm);
+router.put('/edit/:id', updateDeliveryForm)
 
 // Route to delete a delivery form by ID
-router.delete('/remove/:id', deleteDeliveryForm);
+router.delete('/remove/:id', deleteDeliveryForm)
 
-export default router;
+export default router

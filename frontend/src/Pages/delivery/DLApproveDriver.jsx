@@ -1,34 +1,39 @@
+
 import React, { useState, useEffect } from 'react';
 import axios from '../../../axios'; // Ensure the path matches your project structure
 import { useNavigate } from 'react-router-dom';
 import DLmanageSidebar from '../../Components/delivery/DLmanageSidebar'; // Import the DeliverySidebar component
 
+
 const DLApproveDriver = () => {
-    const [pendingForms, setPendingForms] = useState([]);
-    const navigate = useNavigate();
+    const [pendingForms, setPendingForms] = useState([])
+    const navigate = useNavigate()
 
     // Fetch pending forms when the component loads
     useEffect(() => {
         const fetchPendingForms = async () => {
             try {
-                const { data } = await axios.get('/d_forms/pending-forms');
-                setPendingForms(data);
+                const { data } = await axios.get('/d_forms/pending-forms')
+                setPendingForms(data)
             } catch (error) {
-                console.error('Error fetching pending forms:', error);
+                console.error('Error fetching pending forms:', error)
             }
-        };
+        }
 
-        fetchPendingForms();
-    }, []);
+        fetchPendingForms()
+    }, [])
 
     // Handle reviewing a driver by navigating to the review page
     const handleReview = (id) => {
+
         navigate(`/manager/approve-driver/${id}`);
     };
+
 
     // Display a message if there are no pending forms
     if (pendingForms.length === 0) {
         return (
+
             <div className="flex min-h-screen bg-gray-50">
                 {/* Sidebar */}
                 <aside className="fixed top-0 left-0 bottom-0 w-64 bg-gray-50 shadow-md pl-8 pt-16 mt-16">
@@ -89,8 +94,9 @@ const DLApproveDriver = () => {
                     </div>
                 </div>
             </main>
-        </div>
-    );
-};
 
-export default DLApproveDriver;
+        </div>
+    )
+}
+
+export default DLApproveDriver

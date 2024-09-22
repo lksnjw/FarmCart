@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from '../../../axios'; // Corrected path
@@ -21,22 +22,23 @@ const DLDriverAccept = () => {
     useEffect(() => {
         const fetchDriverDetails = async () => {
             try {
-                const { data } = await axios.get(`/d_forms/${id}`);
-                setDriverDetails(data);
+                const { data } = await axios.get(`/d_forms/${id}`)
+                setDriverDetails(data)
             } catch (error) {
-                console.error('Error fetching driver details:', error);
+                console.error('Error fetching driver details:', error)
             }
-        };
+        }
 
-        fetchDriverDetails();
-    }, [id]);
+        fetchDriverDetails()
+    }, [id])
 
     const handleApprove = async () => {
         try {
             // Add the driver to the system
-            await axios.post(`/drivers/addDriver/${id}`);
-    
+            await axios.post(`/drivers/addDriver/${id}`)
+
             // Update the status of the delivery form to "Approved"
+
             await axios.put(`/d_forms/${id}/status`, { status: 'Approved' });
     
             // Send approval email
@@ -92,18 +94,21 @@ const DLDriverAccept = () => {
                     confirmButton: 'bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600',
                 },
             });
+
         }
-    };
+    }
 
     if (!driverDetails) return <div className="text-center mt-10">Loading...</div>;
 
+
     // Construct the full URL for each image
-    const baseUrl = 'http://localhost:3000/';
-    const idCardImageUrl = `${baseUrl}${driverDetails.idCardImageUrl}`;
-    const licenseImageUrl = `${baseUrl}${driverDetails.licenseImageUrl}`;
-    const personalImageUrl = `${baseUrl}${driverDetails.personalImageUrl}`;
+    const baseUrl = 'http://localhost:3000/'
+    const idCardImageUrl = `${baseUrl}${driverDetails.idCardImageUrl}`
+    const licenseImageUrl = `${baseUrl}${driverDetails.licenseImageUrl}`
+    const personalImageUrl = `${baseUrl}${driverDetails.personalImageUrl}`
 
     return (
+
         <div className="flex min-h-screen bg-gray-50">
             {/* Sidebar */}
             <aside className="fixed top-0 left-0 bottom-0 w-64 bg-gray-50 shadow-md pl-8 pt-16 mt-16">
@@ -141,6 +146,7 @@ const DLDriverAccept = () => {
             <div className="text-gray-700 font-semibold">Full Name:</div>
             <div className="text-gray-600">{driverDetails.fullName}</div>
         </div>
+
 
         {/* Email */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
@@ -260,7 +266,7 @@ const DLDriverAccept = () => {
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default DLDriverAccept;
+export default DLDriverAccept

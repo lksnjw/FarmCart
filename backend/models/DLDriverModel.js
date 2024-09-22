@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const DLDriverSchema = mongoose.Schema(
     {
@@ -82,8 +82,12 @@ const DLDriverSchema = mongoose.Schema(
     {
         timestamps: true,
     }
+
 );
+
+
 
 const DLDriver = mongoose.model('DLDriver', DLDriverSchema);
 
-export default DLDriver;
+
+export default DLDriver
