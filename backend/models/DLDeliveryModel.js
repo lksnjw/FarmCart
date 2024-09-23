@@ -9,27 +9,26 @@ const DLDeliverySchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order',
     },
+    
+    oID:{type: String,},
+
     driverID: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'DLDriver',
     },
-    
+
     drID: {
         type: String,
     },    
     shopName: String,
     
     pickupAddress: {
-        houseNo: String,
-        streetName: String,
-        city: String,
+        type: String,
     },
     customerName: String,
+    
     dropOffAddress: {
-        streetAddress: String,
-        city: String,
-        zipCode: String,
-        district: String,
+        type: String,
     },
     assignDateTime: {
         type: Date,

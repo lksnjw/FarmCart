@@ -1,6 +1,7 @@
 import DLDriver from '../models/DLDriverModel.js';
 import Order from '../models/DLOModel.js';
 import DLDelivery from '../models/DLDeliveryModel.js';
+import asyncHandler from 'express-async-handler';
 
 
 
@@ -34,21 +35,13 @@ export const assignDriverToOrder = async () => {
         const delivery = new DLDelivery({
             trackingID,
             orderID: order._id,
+            oID: order.orderID,
             driverID: driver._id,
             drID: driver.driverID,
             shopName: order.shopName,
-            pickupAddress: {
-                streetAddress: order.shopAddress.streetName, // Make sure to pass this field
-                city: order.shopAddress.city,
-                district: order.shopAddress.district, // Make sure this is provided
-            },
+            pickupAddress: `${order.shopAddress.streetName || ''}, ${order.shopAddress.city || ''}, ${order.shopAddress.district || ''}`.trim().replace(/^,|,$/g, ''),
             customerName: order.customerName,
-            dropOffAddress: {
-                streetAddress: order.customerAddress.streetAddress,
-                city: order.customerAddress.city,
-                zipCode: order.customerAddress.zipCode,
-                district: order.customerAddress.district,
-            },
+            dropOffAddress: `${order.customerAddress.streetAddress || ''}, ${order.customerAddress.city || ''}, ${order.customerAddress.zipCode || ''}, ${order.customerAddress.district || ''}`.trim().replace(/^,|,$/g, ''),
         });
 
         await delivery.save();
@@ -77,3 +70,67 @@ export const checkForAvailableDrivers = async () => {
         console.error('Error in checking for available drivers:', error);
     }
 };
+
+
+
+// Controller to get all deliveries with search and pagination
+export const getAllDeliveries = async (req, res) => {
+    try {
+        // Search filters
+        const { search = '', page = 1, limit = 20 } = req.query;
+
+        // Regular expression for search
+        const searchRegex = new RegExp(search, 'i');
+
+        // Fetch deliveries with filters applied
+        const deliveries = await DLDelivery.find({
+            $or: [
+                { trackingID: searchRegex },
+                { oID: searchRegex },
+                { drID: searchRegex },
+                { shopName: searchRegex },
+                { customerName: searchRegex },
+                { pickupAddress: searchRegex },
+                { dropOffAddress: searchRegex }
+            ],
+        })
+            .skip((page - 1) * limit)
+            .limit(parseInt(limit));
+
+        // Total number of deliveries for pagination
+        const total = await DLDelivery.countDocuments({
+            $or: [
+                { trackingID: searchRegex },
+                { oID: searchRegex },
+                { drID: searchRegex },
+                { shopName: searchRegex },
+                { customerName: searchRegex },
+                { pickupAddress: searchRegex },
+                { dropOffAddress: searchRegex }
+            ],
+        });
+
+        res.status(200).json({
+            deliveries,
+            total,
+            page: parseInt(page),
+            pages: Math.ceil(total / limit),
+        });
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching deliveries', error });
+    }
+};
+
+// @desc   Get a single delivery by ID
+// @route  GET /api/delivery/:id
+// @access Public
+export const getDeliveryById = asyncHandler(async (req, res) => {
+    const delivery = await DLDelivery.findById(req.params.id);
+
+    if (delivery) {
+        res.json(delivery);
+    } else {
+        res.status(404);
+        throw new Error('Delivery not found');
+    }
+});

@@ -32,7 +32,7 @@ export const sendApprovalEmail = asyncHandler(async (req, res) => {
         from: process.env.EMAIL_USER,
         to: driver.email,
         subject: 'Approval Confirmation',
-        text: `Dear ${driver.fullName},\n\nCongratulations! Your driver registration has been approved.\n\nRegards,\nFarmCart Team`,
+        text: `Dear ${driver.fullName},\n\nCongratulations! Your driver registration has been approved.Enter Your ID to login in first time . \n\nRegards,\nFarmCart Team`,
     }
 
     // Send the email

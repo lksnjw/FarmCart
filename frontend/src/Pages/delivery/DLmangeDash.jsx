@@ -37,7 +37,7 @@ const DLmanageDash = () => {
     return (
         <div className="flex min-h-screen bg-gray-50">
             {/* Sidebar */}
-            <aside className="fixed top-0 left-0 bottom-0 w-64 bg-gray-50 shadow-md pl-8 pt-16">
+            <aside>
                 <DLmanageSidebar />
             </aside>
 
@@ -81,7 +81,7 @@ const DLmanageDash = () => {
                             <tbody>
                                 {/* Sample driver requests */}
                                 <tr className="bg-white">
-                                    <td className="px-4 py-2 border">John Doe</td>
+                                    <td className="px-4 py-2 border">Nimendra</td>
                                     <td className="px-4 py-2 border">Bike</td>
                                     <td className="px-4 py-2 border">12 Sep, 2023</td>
                                     <td className="px-4 py-2 border">
@@ -89,7 +89,7 @@ const DLmanageDash = () => {
                                     </td>
                                 </tr>
                                 <tr className="bg-white">
-                                    <td className="px-4 py-2 border">Jane Smith</td>
+                                    <td className="px-4 py-2 border">Sanjeewa</td>
                                     <td className="px-4 py-2 border">Lorry</td>
                                     <td className="px-4 py-2 border">10 Sep, 2023</td>
                                     <td className="px-4 py-2 border">
@@ -118,7 +118,7 @@ const DLmanageDash = () => {
                             <tbody>
                                 <tr className="bg-white">
                                     <td className="px-4 py-2 border">#1234</td>
-                                    <td className="px-4 py-2 border">John Doe</td>
+                                    <td className="px-4 py-2 border">Dasun </td>
                                     <td className="px-4 py-2 border">Bike</td>
                                     <td className="px-4 py-2 border">
                                         <span className="bg-blue-500 text-white px-2 py-1 rounded">In Progress</span>
@@ -126,7 +126,7 @@ const DLmanageDash = () => {
                                 </tr>
                                 <tr className="bg-white">
                                     <td className="px-4 py-2 border">#5678</td>
-                                    <td className="px-4 py-2 border">Jane Smith</td>
+                                    <td className="px-4 py-2 border">Ishara</td>
                                     <td className="px-4 py-2 border">Lorry</td>
                                     <td className="px-4 py-2 border">
                                         <span className="bg-green-500 text-white px-2 py-1 rounded">Completed</span>

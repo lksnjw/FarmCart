@@ -2,6 +2,8 @@ import mongoose from 'mongoose';
 
 const orderSchema = new mongoose.Schema(
     {
+        /* generate and store the  oID:{type: String,}, */
+
         orderID: {
             type: String, // You can change this to any type or ObjectId if needed
             required: false, // Ensure each order has a unique ID

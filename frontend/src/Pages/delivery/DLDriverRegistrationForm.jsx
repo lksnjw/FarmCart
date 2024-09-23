@@ -107,7 +107,7 @@ const RegisterDriverForm = () => {
             })
 
             setLoading(false)
-            navigate('/checkEmail')
+            navigate('/driver/login')
         } catch (error) {
             Swal.fire({
                 icon: 'error',

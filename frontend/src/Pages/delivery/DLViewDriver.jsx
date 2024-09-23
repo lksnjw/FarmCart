@@ -58,6 +58,8 @@ const DLViewDriver = () => {
                     'bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600',
                 cancelButton:
                     'bg-gray-300 text-black font-bold py-2 px-4 rounded hover:bg-gray-400',
+
+                    
             },
         }).then((result) => {
             if (result.isConfirmed) {
@@ -75,7 +77,7 @@ const DLViewDriver = () => {
                                     'bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600',
                             },
                         }).then(() => {
-                            navigate('/manager/drivers') // Navigate back to the drivers list
+                            navigate('/alldrivers') // Navigate back to the drivers list
                         })
                     })
                     .catch((error) => {

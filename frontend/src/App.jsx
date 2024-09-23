@@ -50,8 +50,8 @@ import DLeditdriver from './Pages/delivery/DLeditdriver'; // Import the new DLed
 import OrderForm from './Pages/delivery/DLoooo'; // Assuming OrderForm component is in 'components' folder
 import OrderTable from './Pages/delivery/DLOtable'; // Assuming you store it in the components folder
 import Od from './Pages/delivery/or/orderdelete'; //
-
-
+import DLAllDeliveries from './Pages/delivery/DLviewDeliveries'; // Import the DLAllDeliveries component
+import DLViewDelivery from './Pages/delivery/DLviewDelivery'; // Import the
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -76,8 +76,8 @@ const router = createBrowserRouter(
              <Route path="/a" element={<OrderForm />} />
              <Route path="/b" element={<OrderTable />} />
             <Route path="/d" element={<Od/>} />
-
-
+            <Route path="/DLAllDeliveries" element={<DLAllDeliveries/>} />
+           <Route path="/manager/delivery/:id" element={<DLViewDelivery />} />
 
 
 

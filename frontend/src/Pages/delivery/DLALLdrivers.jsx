@@ -7,7 +7,9 @@ const DLALLdrivers = () => {
     const [drivers, setDrivers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredDrivers, setFilteredDrivers] = useState([]);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
+    const rowsPerPage = 30; // Limit rows to 30 per page
     const navigate = useNavigate();
 
     // Fetch all drivers when the component mounts
@@ -15,8 +17,10 @@ const DLALLdrivers = () => {
         const fetchDrivers = async () => {
             try {
                 const { data } = await axios.get('/drivers/drivers'); // API call to get all drivers
+                console.log('Fetched data:', data);
                 setDrivers(data);
-                setFilteredDrivers(data); // Initialize with all drivers
+                setFilteredDrivers(data);
+                setTotalPages(Math.ceil(data.length / rowsPerPage)); // Set total pages based on rows per page
             } catch (error) {
                 console.error('Error fetching drivers:', error);
             }
@@ -34,13 +38,37 @@ const DLALLdrivers = () => {
             setFilteredDrivers(drivers); // Reset to all drivers if search is cleared
         } else {
             const filtered = drivers.filter((driver) =>
-                driver.fullName.toLowerCase().includes(searchValue.toLowerCase()) ||
+                `${driver.firstName} ${driver.lastName}`.toLowerCase().includes(searchValue.toLowerCase()) ||
                 driver.email.toLowerCase().includes(searchValue.toLowerCase()) ||
-                driver.phone.includes(searchValue)
+                driver.phone.includes(searchValue) ||
+                driver.vehicleNumber.toLowerCase().includes(searchValue.toLowerCase()) ||
+                driver.driverID.toLowerCase().includes(searchValue.toLowerCase()) ||
+                driver.vehicleType.toLowerCase().includes(searchValue.toLowerCase()) ||
+                (driver.isAvailable ? 'available' : 'unavailable').includes(searchValue.toLowerCase())
             );
             setFilteredDrivers(filtered);
+            setTotalPages(Math.ceil(filtered.length / rowsPerPage)); // Update total pages after filtering
+            setCurrentPage(1); // Reset to first page when search changes
         }
     };
+
+    // Pagination logic
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
+    const currentRows = filteredDrivers.slice(
+        (currentPage - 1) * rowsPerPage,
+        currentPage * rowsPerPage
+    );
 
     const handleViewDriver = (id) => {
         navigate(`/manager/view-driver/${id}`); // Redirect to DLViewDriver page with the driver ID
@@ -62,7 +90,7 @@ const DLALLdrivers = () => {
                     <div className="mb-4">
                         <input
                             type="text"
-                            placeholder="Search drivers by name, email, or phone"
+                            placeholder="Search drivers by name, email, phone, driver ID, vehicle type, availability"
                             value={searchTerm}
                             onChange={handleSearch}
                             className="w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -74,21 +102,27 @@ const DLALLdrivers = () => {
                         <table className="min-w-full bg-white border border-gray-200">
                             <thead className="bg-gray-200">
                                 <tr>
-                                    <th className="px-6 py-3 border text-left">Name</th>
+                                    <th className="px-6 py-3 border text-left">#</th>
+                                    <th className="px-6 py-3 border text-left">Driver ID</th>
+                                    <th className="px-6 py-3 border text-left">Full Name</th>
                                     <th className="px-6 py-3 border text-left">Email</th>
                                     <th className="px-6 py-3 border text-left">Phone</th>
+                                    <th className="px-6 py-3 border text-left">Vehicle Type</th>
                                     <th className="px-6 py-3 border text-left">Vehicle Number</th>
                                     <th className="px-6 py-3 border text-left">Availability</th>
                                     <th className="px-6 py-3 border text-left">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {filteredDrivers.length > 0 ? (
-                                    filteredDrivers.map((driver) => (
+                                {currentRows.length > 0 ? (
+                                    currentRows.map((driver, index) => (
                                         <tr key={driver._id} className="hover:bg-gray-100">
-                                            <td className="px-6 py-4 border">{driver.fullName}</td>
+                                            <td className="px-6 py-4 border">{(currentPage - 1) * rowsPerPage + index + 1}</td>
+                                            <td className="px-6 py-4 border">{driver.driverID}</td>
+                                            <td className="px-6 py-4 border">{`${driver.firstName} ${driver.lastName}`}</td>
                                             <td className="px-6 py-4 border">{driver.email}</td>
                                             <td className="px-6 py-4 border">{driver.phone}</td>
+                                            <td className="px-6 py-4 border">{driver.vehicleType}</td>
                                             <td className="px-6 py-4 border">{driver.vehicleNumber}</td>
                                             <td className="px-6 py-4 border">
                                                 <span
@@ -102,20 +136,19 @@ const DLALLdrivers = () => {
                                                 </span>
                                             </td>
                                             <td className="px-6 py-4 border">
-                                            <button
+                                                <button
                                                     onClick={() => handleViewDriver(driver._id)} // Handle View button click
                                                     className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
                                                 >
                                                     View
                                                 </button>
-
                                             </td>
                                         </tr>
                                     ))
                                 ) : (
                                     <tr>
                                         <td
-                                            colSpan="6"
+                                            colSpan="9"
                                             className="px-6 py-4 border text-center text-gray-600"
                                         >
                                             No drivers found
@@ -124,6 +157,27 @@ const DLALLdrivers = () => {
                                 )}
                             </tbody>
                         </table>
+                    </div>
+
+                    {/* Pagination controls */}
+                    <div className="flex justify-between items-center mt-4">
+                        <button
+                            onClick={handlePrevPage}
+                            disabled={currentPage === 1}
+                            className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+                        >
+                            Previous
+                        </button>
+                        <span className="text-gray-600">
+                            Page {currentPage} of {totalPages}
+                        </span>
+                        <button
+                            onClick={handleNextPage}
+                            disabled={currentPage === totalPages}
+                            className="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300"
+                        >
+                            Next
+                        </button>
                     </div>
                 </div>
             </main>

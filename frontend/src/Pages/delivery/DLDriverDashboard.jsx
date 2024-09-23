@@ -20,8 +20,8 @@ const DLDriverDashboard = () => {
             try {
                 const { data } = await axios.get('/api/drivers/profile', {
                     headers: {
-                        Authorization: `Bearer ${driverToken}` // Pass token in headers
-                    }
+                        Authorization: `Bearer ${driverToken}`, // Pass token in headers
+                    },
                 });
                 setDriver(data); // Set driver data from the response
                 setIsAvailable(data.isAvailable); // Set initial availability
@@ -36,11 +36,9 @@ const DLDriverDashboard = () => {
         fetchDriverProfile(); // Fetch the driver profile on component load
     }, [navigate]);
 
-   
-        const handleLogout = () => {
-            navigate('/driver/logout'); // Navigate to the DLlogout page
-        };
-    
+    const handleLogout = () => {
+        navigate('/driver/logout'); // Navigate to the DLlogout page
+    };
 
     const toggleAvailability = async () => {
         const driverToken = localStorage.getItem('driverToken');
@@ -50,8 +48,8 @@ const DLDriverDashboard = () => {
                 { isAvailable: !isAvailable },
                 {
                     headers: {
-                        Authorization: `Bearer ${driverToken}` // Pass token in headers
-                    }
+                        Authorization: `Bearer ${driverToken}`, // Pass token in headers
+                    },
                 }
             );
             setIsAvailable(!isAvailable); // Toggle availability state
@@ -71,29 +69,29 @@ const DLDriverDashboard = () => {
 
             {/* Main content */}
             <main className="flex-1 ml-64 p-16 overflow-y-auto">
-                <div className="max-w-5xl mx-auto p-6 bg-white shadow-md rounded-md">
+                <div className="max-w-5xl mx-auto p-8 bg-white shadow-lg rounded-lg">
                     <h1 className="text-3xl font-bold mb-6 text-center">Welcome, {driver.fullName}</h1>
-                    
+
                     {/* Profile Info */}
-                    <div className="bg-gray-100 p-6 rounded-lg shadow-lg">
+                    <div className="bg-gray-100 p-6 rounded-lg shadow-lg mb-6">
                         <div className="flex justify-between items-center mb-8">
                             <div>
-                                <p className="text-gray-600">Email: {driver.email}</p>
-                                <p className="text-gray-600">Vehicle: {driver.vehicleType}</p>
-                                <p className="text-gray-600">Phone: {driver.phone}</p>
+                                <p className="text-lg text-gray-600">Email: {driver.email}</p>
+                                <p className="text-lg text-gray-600">Vehicle: {driver.vehicleType}</p>
+                                <p className="text-lg text-gray-600">Phone: {driver.phone}</p>
                             </div>
                             <div className="flex space-x-2">
                                 <button
                                     onClick={toggleAvailability}
-                                    className={`px-4 py-2 text-white rounded-md ${
-                                        isAvailable ? 'bg-green-500' : 'bg-red-500'
+                                    className={`px-4 py-2 text-white font-bold rounded-md ${
+                                        isAvailable ? 'bg-green-500 hover:bg-green-600' : 'bg-red-500 hover:bg-red-600'
                                     }`}
                                 >
                                     {isAvailable ? 'Available' : 'Unavailable'}
                                 </button>
                                 <button
                                     onClick={handleLogout}
-                                    className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+                                    className="px-4 py-2 bg-red-500 text-white font-bold rounded-md hover:bg-red-600"
                                 >
                                     Logout
                                 </button>
@@ -101,9 +99,21 @@ const DLDriverDashboard = () => {
                         </div>
 
                         {/* Availability Info */}
-                        <p className="text-gray-700 font-semibold">
+                        <div className="text-lg text-gray-700 font-semibold">
                             Availability: {isAvailable ? 'Available' : 'Not Available'}
-                        </p>
+                        </div>
+                    </div>
+
+                    {/* Statistics Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="bg-yellow-100 p-6 rounded-lg shadow-md">
+                            <h2 className="text-lg font-semibold text-yellow-800">Assigned Deliveries</h2>
+                            <p className="text-4xl font-bold text-yellow-800 mt-4">0</p>
+                        </div>
+                        <div className="bg-blue-100 p-6 rounded-lg shadow-md">
+                            <h2 className="text-lg font-semibold text-blue-800">Completed Deliveries</h2>
+                            <p className="text-4xl font-bold text-blue-800 mt-4">8</p>
+                        </div>
                     </div>
                 </div>
             </main>
