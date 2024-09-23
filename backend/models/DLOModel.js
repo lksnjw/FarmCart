@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 const orderSchema = new mongoose.Schema(
     {
@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema(
         orderID: {
             type: String, // You can change this to any type or ObjectId if needed
             required: false, // Ensure each order has a unique ID
-             // Make sure this order ID is unique
+            // Make sure this order ID is unique
         },
         customerName: {
             type: String,
@@ -22,7 +22,6 @@ const orderSchema = new mongoose.Schema(
         shopName: {
             type: String,
             required: [false, 'Shop name is required'],
-           
         },
         shopAddress: {
             houseNo: {
@@ -65,8 +64,8 @@ const orderSchema = new mongoose.Schema(
     {
         timestamps: true, // Automatically add createdAt and updatedAt fields
     }
-);
+)
 
-const Order = mongoose.model('Order', orderSchema);
+const Order = mongoose.model('Order', orderSchema)
 
-export default Order;
+export default Order

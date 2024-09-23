@@ -10,7 +10,6 @@ const DLViewDriver = () => {
     const [selectedImage, setSelectedImage] = useState(null) // For image pop-up
     const [isEditing, setIsEditing] = useState(false)
     const navigate = useNavigate()
-    
 
     // Fetch driver details on component load
     useEffect(() => {
@@ -120,65 +119,69 @@ const DLViewDriver = () => {
     }
 
     // Handlers to update driver details
-    
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        let errorMessage = '';
-    
+        const { name, value } = e.target
+        let errorMessage = ''
+
         // Validate Name
         if (name === 'fullName') {
             if (!/^[A-Za-z\s]*$/.test(value)) {
-                errorMessage = 'Name should only contain alphabets and spaces.';
+                errorMessage = 'Name should only contain alphabets and spaces.'
             }
         }
-    
+
         // Validate Contact Number
         if (name === 'contactNumber') {
             if (!/^0\d{9}$/.test(value)) {
-                errorMessage = 'Contact number must be 10 digits and start with 0.';
+                errorMessage =
+                    'Contact number must be 10 digits and start with 0.'
             }
         }
-    
+
         // Validate Birthday and Age
         if (name === 'dateOfBirth') {
-            const age = calculateAge(value);
+            const age = calculateAge(value)
             if (age < 18) {
-                errorMessage = 'You must be at least 18 years old to register.';
+                errorMessage = 'You must be at least 18 years old to register.'
             }
-    
+
             // Ensure NIC year matches Birthday year
-            const birthYear = new Date(value).getFullYear();
-            if (driverDetails.NIC && !driverDetails.NIC.startsWith(birthYear.toString())) {
-                errorMessage = 'Please Enter valid NIC';
+            const birthYear = new Date(value).getFullYear()
+            if (
+                driverDetails.NIC &&
+                !driverDetails.NIC.startsWith(birthYear.toString())
+            ) {
+                errorMessage = 'Please Enter valid NIC'
             }
         }
-    
+
         // Validate NIC
         if (name === 'NIC') {
-            const nicRegex = /^\d{11}[0-9Vv]$/;
-            const birthYear = new Date(driverDetails.dateOfBirth).getFullYear().toString();
-    
+            const nicRegex = /^\d{11}[0-9Vv]$/
+            const birthYear = new Date(driverDetails.dateOfBirth)
+                .getFullYear()
+                .toString()
+
             if (!nicRegex.test(value)) {
-                errorMessage = 'Please Enter valid NIC';
+                errorMessage = 'Please Enter valid NIC'
             } else if (!value.startsWith(birthYear)) {
-                errorMessage = 'Please Enter valid NIC';
+                errorMessage = 'Please Enter valid NIC'
             }
         }
-    
+
         setDriverDetails((prevDetails) => ({
             ...prevDetails,
             [name]: value,
-        }));
-    
+        }))
+
         // Set error message for the field
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: errorMessage,
-        }));
-    };
-    
-    
+        }))
+    }
+
     return (
         <div className="flex min-h-screen bg-gray-50">
             {/* Sidebar */}
@@ -204,9 +207,12 @@ const DLViewDriver = () => {
                                     handleImageClick(personalImageUrl)
                                 } // Click to enlarge
                             />
-                            <h3 className="text-2xl font-bold"> {driverDetails.firstName} {driverDetails.lastName} </h3>
-                                
-                            
+                            <h3 className="text-2xl font-bold">
+                                {' '}
+                                {driverDetails.firstName}{' '}
+                                {driverDetails.lastName}{' '}
+                            </h3>
+
                             <p className="text-gray-500">
                                 {driverDetails.email}
                             </p>
@@ -216,7 +222,9 @@ const DLViewDriver = () => {
                             <p className="text-gray-500">
                                 {driverDetails.vehicleType}
                             </p>
-                            <p className="text-gray-600">{driverDetails.driverID}</p>
+                            <p className="text-gray-600">
+                                {driverDetails.driverID}
+                            </p>
                         </div>
 
                         {/* Detailed Information Form */}

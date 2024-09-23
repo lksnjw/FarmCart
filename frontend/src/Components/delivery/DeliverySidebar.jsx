@@ -1,7 +1,6 @@
-
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate for navigation
-import Swal from 'sweetalert2';
+import React from 'react'
+import { Link, useNavigate } from 'react-router-dom' // Added useNavigate for navigation
+import Swal from 'sweetalert2'
 import {
     FaTachometerAlt,
     FaTruck,
@@ -9,27 +8,29 @@ import {
     FaUser,
     FaCog,
     FaSignOutAlt,
-} from 'react-icons/fa'; // Importing icons from react-icons
+} from 'react-icons/fa' // Importing icons from react-icons
 
 const DeliverySidebar = ({ driver }) => {
-    const navigate = useNavigate(); // Using useNavigate to redirect
+    const navigate = useNavigate() // Using useNavigate to redirect
 
     const handleLogout = () => {
         Swal.fire({
             title: 'Are you sure?',
-            text: "You will be logged out of the system!",
+            text: 'You will be logged out of the system!',
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: 'OK',
             cancelButtonText: 'Cancel',
             customClass: {
-                confirmButton: 'bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600',
-                cancelButton: 'bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600',
+                confirmButton:
+                    'bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600',
+                cancelButton:
+                    'bg-green-500 text-white font-bold py-2 px-4 rounded hover:bg-green-600',
             },
             buttonsStyling: false, // Disable default SweetAlert button styling
         }).then((result) => {
             if (result.isConfirmed) {
-                navigate('/driver/logout'); // Navigate to the logout page if confirmed
+                navigate('/driver/logout') // Navigate to the logout page if confirmed
             } else {
                 Swal.fire({
                     title: 'Cancelled',
@@ -37,17 +38,17 @@ const DeliverySidebar = ({ driver }) => {
                     icon: 'info',
                     confirmButtonText: 'OK',
                     customClass: {
-                        confirmButton: 'bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600',
+                        confirmButton:
+                            'bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600',
                     },
                     buttonsStyling: false,
-                });
+                })
             }
-        });
-    };
+        })
+    }
 
-    const baseUrl = 'http://localhost:3000/';
-    const personalImageUrl = `${baseUrl}${driver?.personalImageUrl}`;
-
+    const baseUrl = 'http://localhost:3000/'
+    const personalImageUrl = `${baseUrl}${driver?.personalImageUrl}`
 
     return (
         <aside className="absolute top-6 left-6 w-60 bg-white rounded-lg shadow-lg p-4 mt-8">
@@ -106,7 +107,6 @@ const DeliverySidebar = ({ driver }) => {
                             className="flex items-center p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 rounded-lg hover:bg-green-500 hover:text-white"
                         >
                             <FaCog className="w-5 h-5 mr-3" />
-
                             Settings
                         </Link>
                     </li>
@@ -122,8 +122,7 @@ const DeliverySidebar = ({ driver }) => {
                 </ul>
             </nav>
         </aside>
-    );
-};
-
+    )
+}
 
 export default DeliverySidebar
