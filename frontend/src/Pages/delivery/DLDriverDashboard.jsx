@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import DeliverySidebar from '../../Components/delivery/DeliverySidebar';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+import DeliverySidebar from '../../Components/delivery/DeliverySidebar'
 
 const DLDriverDashboard = () => {
     const [driver, setDriver] = useState(null);
@@ -9,12 +9,13 @@ const DLDriverDashboard = () => {
     const [isAvailable, setIsAvailable] = useState(false); // State for availability
     const navigate = useNavigate();
 
+
     useEffect(() => {
         const fetchDriverProfile = async () => {
-            const driverToken = localStorage.getItem('driverToken'); // Get token from localStorage
+            const driverToken = localStorage.getItem('driverToken') // Get token from localStorage
             if (!driverToken) {
-                navigate('/driver/login'); // If no token, redirect to login page
-                return;
+                navigate('/driver/login') // If no token, redirect to login page
+                return
             }
 
             try {
@@ -26,15 +27,16 @@ const DLDriverDashboard = () => {
                 setDriver(data); // Set driver data from the response
                 setIsAvailable(data.isAvailable); // Set initial availability
                 setLoading(false);
-            } catch (err) {
-                console.error('Error fetching driver profile:', err);
-                localStorage.removeItem('driverToken'); // Remove invalid token
-                navigate('/driver/login'); // Redirect to login on error
-            }
-        };
 
-        fetchDriverProfile(); // Fetch the driver profile on component load
-    }, [navigate]);
+            } catch (err) {
+                console.error('Error fetching driver profile:', err)
+                localStorage.removeItem('driverToken') // Remove invalid token
+                navigate('/driver/login') // Redirect to login on error
+            }
+        }
+
+        fetchDriverProfile() // Fetch the driver profile on component load
+    }, [navigate])
 
     const handleLogout = () => {
         navigate('/driver/logout'); // Navigate to the DLlogout page
@@ -58,7 +60,8 @@ const DLDriverDashboard = () => {
         }
     };
 
-    if (loading) return <div>Loading...</div>;
+
+    if (loading) return <div>Loading...</div>
 
     return (
         <div className="flex min-h-screen bg-gray-50">
@@ -117,8 +120,9 @@ const DLDriverDashboard = () => {
                     </div>
                 </div>
             </main>
-        </div>
-    );
-};
 
-export default DLDriverDashboard;
+        </div>
+    )
+}
+
+export default DLDriverDashboard

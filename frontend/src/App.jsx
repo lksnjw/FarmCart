@@ -33,12 +33,13 @@ import Products from './Pages/farmer/products'
 import AddProduct from './Pages/farmer/addProduct'
 import UpdateProduct from './Pages/farmer/UpdateProduct'
 
-import DLDriverRegistrationForm from './Pages/delivery/DLDriverRegistrationForm';
-import DLApproveDriver from './Pages/delivery/DLApproveDriver'; // Ensure the path is correct
-import DLDriverAccept from './Pages/delivery/DLDriverAccept';
-import DLImageUpload from './DLImageUpload';
-import DLSendEmail from './Pages/delivery/DLSendEmail'; // Import the DLSendEmail component
+import DLDriverRegistrationForm from './Pages/delivery/DLDriverRegistrationForm'
+import DLApproveDriver from './Pages/delivery/DLApproveDriver' // Ensure the path is correct
+import DLDriverAccept from './Pages/delivery/DLDriverAccept'
+import DLImageUpload from './DLImageUpload'
+import DLSendEmail from './Pages/delivery/DLSendEmail' // Import the DLSendEmail component
 import DLLogin from './Pages/delivery/DLLogin' // Added DLLogin import
+
 import DeliveryDashboard from './Pages/delivery/DLDriverDashboard';
 import DLDriverProfile from './Pages/delivery/DLDriverProfile' // Import the driver profile component
 import DLEditProfile from './Pages/delivery/Dleditprofile';
@@ -53,9 +54,11 @@ import Od from './Pages/delivery/or/orderdelete'; //
 import DLAllDeliveries from './Pages/delivery/DLviewDeliveries'; // Import the DLAllDeliveries component
 import DLViewDelivery from './Pages/delivery/DLviewDelivery'; // Import the
 
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<MainLayout />}>
+
 
              <Route index element={<HomePage />} />
              <Route path="/register-driver" element={<DLDriverRegistrationForm />} />
@@ -78,6 +81,7 @@ const router = createBrowserRouter(
             <Route path="/d" element={<Od/>} />
             <Route path="/DLAllDeliveries" element={<DLAllDeliveries/>} />
            <Route path="/manager/delivery/:id" element={<DLViewDelivery />} />
+
 
 
 

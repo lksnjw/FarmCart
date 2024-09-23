@@ -1,12 +1,8 @@
-
-import bcrypt from 'bcryptjs';
-import asyncHandler from 'express-async-handler';
-import DLDriver from '../models/DLDriverModel.js';
-import DLDeliveryForm from '../models/DLDeliveryFormModel.js';
-import { generateToken } from '../utils/dlgenerateToken.js';
-
-
-
+import bcrypt from 'bcryptjs'
+import asyncHandler from 'express-async-handler'
+import DLDriver from '../models/DLDriverModel.js'
+import DLDeliveryForm from '../models/DLDeliveryFormModel.js'
+import { generateToken } from '../utils/dlgenerateToken.js'
 
 // Function to generate a unique driverID starting with "D" and followed by a 6-digit number
 const generateDriverID = async () => {
@@ -136,9 +132,7 @@ const deleteDriverById = asyncHandler(async (req, res) => {
     } else {
         res.status(404).json({ message: 'Driver not found' })
     }
-
-});
-
+})
 
 
 // getting all the drivers 
@@ -157,14 +151,14 @@ const getAllDrivers = asyncHandler(async (req, res) => {
 // Driver Login
 // Driver Login
 const loginDriver = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
-    
+    const { email, password } = req.body
+
     // Find driver by email
-    const driver = await DLDriver.findOne({ email });
+    const driver = await DLDriver.findOne({ email })
 
     if (driver && (await bcrypt.compare(password, driver.password))) {
         // Generate JWT token and return it
-        const token = generateToken(driver._id);
+        const token = generateToken(driver._id)
         res.status(200).json({
             _id: driver._id,
             fullName: driver.fullName,
@@ -172,18 +166,18 @@ const loginDriver = asyncHandler(async (req, res) => {
             vehicleType: driver.vehicleType,
             isAvailable: driver.isAvailable,
             token, // Send the token in the response
-        });
+        })
     } else {
-        res.status(401).json({ message: 'Invalid email or password' });
+        res.status(401).json({ message: 'Invalid email or password' })
     }
-});
-
+})
 
 // Get Driver Profile
 const getDriverProfile = asyncHandler(async (req, res) => {
-    const driver = await DLDriver.findById(req.driver._id).select('-password'); // Exclude password
+    const driver = await DLDriver.findById(req.driver._id).select('-password') // Exclude password
 
     if (driver) {
+
         res.json({
             _id: driver._id,
             driverID: driver.driverID,
@@ -206,10 +200,12 @@ const getDriverProfile = asyncHandler(async (req, res) => {
     } else {
         res.status(404);
         throw new Error('Driver not found');
+
     }
-});
+})
 
 // Toggle driver's availability
+
 const updateDriverAvailability = asyncHandler(async (req, res) => {
     const driver = await DLDriver.findById(req.params.id);
 
@@ -258,14 +254,16 @@ const updateDriverProfile = asyncHandler(async (req, res) => {
     } else {
         res.status(404);
         throw new Error('Driver not found');
+
     }
-});
+})
 
 // Logout driver
 const logoutDriver = (req, res) => {
     res.cookie('jwt', '', {
         httpOnly: true,
         expires: new Date(0),
+
     });
 
     res.status(200).json({ message: 'Logged out successfully' });
@@ -351,3 +349,4 @@ export { addDriver,
        updateDriverProfile,
        verifyPassword,
        getAllDrivers};
+

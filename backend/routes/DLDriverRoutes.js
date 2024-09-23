@@ -4,9 +4,9 @@ import {
     getDriverById,
     updateDriverById,
     deleteDriverById,
-
     loginDriver,
     getDriverProfile,
+
     updateDriverAvailability,
     logoutDriver, 
     updateDriverProfile,
@@ -18,14 +18,15 @@ import {
     // Add logout driver function
 } from '../controllers/DLDriverController.js';
 
-import { protectDriver } from '../middlewares/DLauthMiddleware.js';
 
-const router = express.Router();
+import { protectDriver } from '../middlewares/DLauthMiddleware.js'
+
+const router = express.Router()
 
 // Route for driver login
-router.post('/login', loginDriver);
+router.post('/login', loginDriver)
 
-router.post('/addDriver/:id', addDriver);
+router.post('/addDriver/:id', addDriver)
 
 // Route to get a driver by ID
 router.get('/get/:id', getDriverById)
@@ -37,15 +38,18 @@ router.put('/update/:id', updateDriverById)
 router.delete('/delete/:id', deleteDriverById)
 
 
+
 router.route('/profile')
     .get(protectDriver, getDriverProfile) // GET profile
     .put(protectDriver, updateDriverProfile) // PUT (update) profile
 
+
     
 // Route to logout the driver
-router.post('/logout', logoutDriver);  // Add logout route
+router.post('/logout', logoutDriver) // Add logout route
 
 // Route to toggle the driver's availability
+
 router.put('/:id/availability', protectDriver, updateDriverAvailability);
 
 router.put('/profile/password', protectDriver, updateDriverPassword);
@@ -59,4 +63,5 @@ router.get('/drivers', getAllDrivers);
 
 
 
-export default router;
+
+export default router

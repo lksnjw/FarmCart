@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Added useNavigate for navigation
 import Swal from 'sweetalert2';
@@ -46,6 +47,7 @@ const DeliverySidebar = ({ driver }) => {
 
     const baseUrl = 'http://localhost:3000/';
     const personalImageUrl = `${baseUrl}${driver?.personalImageUrl}`;
+
 
     return (
         <aside className="absolute top-6 left-6 w-60 bg-white rounded-lg shadow-lg p-4 mt-8">
@@ -104,6 +106,7 @@ const DeliverySidebar = ({ driver }) => {
                             className="flex items-center p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700 rounded-lg hover:bg-green-500 hover:text-white"
                         >
                             <FaCog className="w-5 h-5 mr-3" />
+
                             Settings
                         </Link>
                     </li>
@@ -122,4 +125,5 @@ const DeliverySidebar = ({ driver }) => {
     );
 };
 
-export default DeliverySidebar;
+
+export default DeliverySidebar
