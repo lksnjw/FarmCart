@@ -39,7 +39,8 @@ const RegisterDriverForm = () => {
 
         if (name === 'phone') {
             if (!/^0\d{9}$/.test(value)) {
-                errorMessage = 'Phone number must be 10 digits and start with 0.'
+                errorMessage =
+                    'Phone number must be 10 digits and start with 0.'
             }
         }
 
@@ -112,7 +113,9 @@ const RegisterDriverForm = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
-                text: error.response?.data?.message || 'Failed to submit the form. Please try again.',
+                text:
+                    error.response?.data?.message ||
+                    'Failed to submit the form. Please try again.',
                 customClass: {
                     confirmButton:
                         'bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600',
@@ -141,7 +144,11 @@ const RegisterDriverForm = () => {
                                 className="border p-2 rounded-md w-full"
                                 required
                             />
-                            {errors.firstName && <p className="text-red-500 text-sm">{errors.firstName}</p>}
+                            {errors.firstName && (
+                                <p className="text-red-500 text-sm">
+                                    {errors.firstName}
+                                </p>
+                            )}
                         </div>
 
                         {/* Last Name */}
@@ -155,7 +162,11 @@ const RegisterDriverForm = () => {
                                 className="border p-2 rounded-md w-full"
                                 required
                             />
-                            {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName}</p>}
+                            {errors.lastName && (
+                                <p className="text-red-500 text-sm">
+                                    {errors.lastName}
+                                </p>
+                            )}
                         </div>
 
                         {/* Full Name */}
@@ -182,7 +193,11 @@ const RegisterDriverForm = () => {
                                 className="border p-2 rounded-md w-full"
                                 required
                             />
-                            {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                            {errors.email && (
+                                <p className="text-red-500 text-sm">
+                                    {errors.email}
+                                </p>
+                            )}
                         </div>
 
                         {/* Phone */}
@@ -196,7 +211,11 @@ const RegisterDriverForm = () => {
                                 className="border p-2 rounded-md w-full"
                                 required
                             />
-                            {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+                            {errors.phone && (
+                                <p className="text-red-500 text-sm">
+                                    {errors.phone}
+                                </p>
+                            )}
                         </div>
 
                         {/* Date of Birth */}
@@ -287,7 +306,9 @@ const RegisterDriverForm = () => {
                         </label>
                         <input
                             type="file"
-                            onChange={(e) => handleFileChange(e, setIdCardImage)}
+                            onChange={(e) =>
+                                handleFileChange(e, setIdCardImage)
+                            }
                             className="border p-2 rounded-md w-full"
                             required
                         />
@@ -299,7 +320,9 @@ const RegisterDriverForm = () => {
                         </label>
                         <input
                             type="file"
-                            onChange={(e) => handleFileChange(e, setLicenseImage)}
+                            onChange={(e) =>
+                                handleFileChange(e, setLicenseImage)
+                            }
                             className="border p-2 rounded-md w-full"
                             required
                         />
@@ -311,7 +334,9 @@ const RegisterDriverForm = () => {
                         </label>
                         <input
                             type="file"
-                            onChange={(e) => handleFileChange(e, setPersonalImage)}
+                            onChange={(e) =>
+                                handleFileChange(e, setPersonalImage)
+                            }
                             className="border p-2 rounded-md w-full"
                             required
                         />
@@ -319,10 +344,14 @@ const RegisterDriverForm = () => {
 
                     {/* Error and Success Messages */}
                     {errors.submit && (
-                        <p className="text-red-500 text-sm mt-2">{errors.submit}</p>
+                        <p className="text-red-500 text-sm mt-2">
+                            {errors.submit}
+                        </p>
                     )}
                     {successMessage && (
-                        <p className="text-green-500 text-sm mt-2">{successMessage}</p>
+                        <p className="text-green-500 text-sm mt-2">
+                            {successMessage}
+                        </p>
                     )}
 
                     {/* Submit Button */}

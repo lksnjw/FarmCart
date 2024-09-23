@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 import {
     FaTachometerAlt,
     FaTruck,
@@ -7,7 +7,7 @@ import {
     FaUserCheck,
     FaBell,
     FaSignOutAlt,
-} from 'react-icons/fa'; // Importing relevant icons
+} from 'react-icons/fa' // Importing relevant icons
 
 const DLmanageSidebar = () => {
     return (
@@ -71,7 +71,7 @@ const DLmanageSidebar = () => {
                 </ul>
             </nav>
         </aside>
-    );
-};
+    )
+}
 
-export default DLmanageSidebar;
+export default DLmanageSidebar

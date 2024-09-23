@@ -40,76 +40,57 @@ import DLImageUpload from './DLImageUpload'
 import DLSendEmail from './Pages/delivery/DLSendEmail' // Import the DLSendEmail component
 import DLLogin from './Pages/delivery/DLLogin' // Added DLLogin import
 
-import DeliveryDashboard from './Pages/delivery/DLDriverDashboard';
+import DeliveryDashboard from './Pages/delivery/DLDriverDashboard'
 import DLDriverProfile from './Pages/delivery/DLDriverProfile' // Import the driver profile component
-import DLEditProfile from './Pages/delivery/Dleditprofile';
-import DLALLdrivers from './Pages/delivery/DLALLdrivers'; // Import the DLALLdrivers component
-import DLmanageDash from './Pages/delivery/DLmangeDash'; // Adjust the path if necessary
-import DLViewDriver from './Pages/delivery/DLViewDriver';  // Adjust the path according to your project structure
-import DLlogout from './Pages/delivery/DLlogout'; // Import the DLlogout component
-import DLeditdriver from './Pages/delivery/DLeditdriver'; // Import the new DLeditdriver page
-import OrderForm from './Pages/delivery/DLoooo'; // Assuming OrderForm component is in 'components' folder
-import OrderTable from './Pages/delivery/DLOtable'; // Assuming you store it in the components folder
-import Od from './Pages/delivery/or/orderdelete'; //
-import DLAllDeliveries from './Pages/delivery/DLviewDeliveries'; // Import the DLAllDeliveries component
-import DLViewDelivery from './Pages/delivery/DLviewDelivery'; // Import the
-
+import DLEditProfile from './Pages/delivery/Dleditprofile'
+import DLALLdrivers from './Pages/delivery/DLALLdrivers' // Import the DLALLdrivers component
+import DLmanageDash from './Pages/delivery/DLmangeDash' // Adjust the path if necessary
+import DLViewDriver from './Pages/delivery/DLViewDriver' // Adjust the path according to your project structure
+import DLlogout from './Pages/delivery/DLlogout' // Import the DLlogout component
+import DLeditdriver from './Pages/delivery/DLeditdriver' // Import the new DLeditdriver page
+import OrderForm from './Pages/delivery/DLoooo' // Assuming OrderForm component is in 'components' folder
+import OrderTable from './Pages/delivery/DLOtable' // Assuming you store it in the components folder
+import Od from './Pages/delivery/or/orderdelete' //
+import DLAllDeliveries from './Pages/delivery/DLviewDeliveries' // Import the DLAllDeliveries component
+import DLViewDelivery from './Pages/delivery/DLviewDelivery' // Import the
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<MainLayout />}>
-
-
-             <Route index element={<HomePage />} />
-             <Route path="/register-driver" element={<DLDriverRegistrationForm />} />
-                <Route path="/upload-image" element={<DLImageUpload />} />
-             <Route path="/manager/approve-driver" element={<DLApproveDriver />} />
-             <Route path="/manager/approve-driver/:id" element={<DLDriverAccept />} />
-             <Route path="/manager/approve-driver/:id/send-email" element={<DLSendEmail />} />
-
-             <Route path="/driver/login" element={<DLLogin />} />  {/* Driver Login Route */}
-             <Route path="/driver/dashboard" element={<DeliveryDashboard />} />
-             <Route path="/driver/profile" element={<DLDriverProfile />} /> {/* Add profile route */}
-             <Route path="/driver/profile/edit" element={<DLEditProfile />} />
-             <Route path="/alldrivers" element={<DLALLdrivers />} />
-             <Route path="/manager/dashboard" element={<DLmanageDash />} />
-             <Route path="/manager/view-driver/:id" element={<DLViewDriver />} />
-             <Route path="/driver/logout" element={<DLlogout />} />
-             <Route path="/driver/edit/:id" element={<DLeditdriver />} />
-             <Route path="/a" element={<OrderForm />} />
-             <Route path="/b" element={<OrderTable />} />
-            <Route path="/d" element={<Od/>} />
-            <Route path="/DLAllDeliveries" element={<DLAllDeliveries/>} />
-           <Route path="/manager/delivery/:id" element={<DLViewDelivery />} />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <Route index element={<HomePage />} />
+            <Route
+                path="/register-driver"
+                element={<DLDriverRegistrationForm />}
+            />
+            <Route path="/upload-image" element={<DLImageUpload />} />
+            <Route
+                path="/manager/approve-driver"
+                element={<DLApproveDriver />}
+            />
+            <Route
+                path="/manager/approve-driver/:id"
+                element={<DLDriverAccept />}
+            />
+            <Route
+                path="/manager/approve-driver/:id/send-email"
+                element={<DLSendEmail />}
+            />
+            <Route path="/driver/login" element={<DLLogin />} />{' '}
+            {/* Driver Login Route */}
+            <Route path="/driver/dashboard" element={<DeliveryDashboard />} />
+            <Route path="/driver/profile" element={<DLDriverProfile />} />{' '}
+            {/* Add profile route */}
+            <Route path="/driver/profile/edit" element={<DLEditProfile />} />
+            <Route path="/alldrivers" element={<DLALLdrivers />} />
+            <Route path="/manager/dashboard" element={<DLmanageDash />} />
+            <Route path="/manager/view-driver/:id" element={<DLViewDriver />} />
+            <Route path="/driver/logout" element={<DLlogout />} />
+            <Route path="/driver/edit/:id" element={<DLeditdriver />} />
+            <Route path="/a" element={<OrderForm />} />
+            <Route path="/b" element={<OrderTable />} />
+            <Route path="/d" element={<Od />} />
+            <Route path="/DLAllDeliveries" element={<DLAllDeliveries />} />
+            <Route path="/manager/delivery/:id" element={<DLViewDelivery />} />
             {/*<Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-pass" element={<ResetPassword />} />

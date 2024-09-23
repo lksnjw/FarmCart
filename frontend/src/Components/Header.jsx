@@ -161,7 +161,7 @@ const Header = () => {
                                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                                                     onClick={handleLogout}
                                                 >
-                                                   {/*Sign out*/ } 
+                                                    {/*Sign out*/}
                                                 </a>
                                             </li>
                                         </ul>
@@ -193,12 +193,12 @@ const Header = () => {
                             </div>
                             <Link to="/register">
                                 <button className="py-3 border border-black hover:border-[#99DD05] rounded-lg px-7 hover:bg-[#99DD05]">
-                                   {/* SignUp*/}
+                                    {/* SignUp*/}
                                 </button>
                             </Link>
                             <Link to="/login">
                                 <button className="py-3 bg-[#99DD05] rounded-lg px-7 hover:bg-[#99DD05]/60">
-                                   {/* Login*/}
+                                    {/* Login*/}
                                 </button>
                             </Link>
                         </div>
